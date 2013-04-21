@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="CSSCustomFilterSandbox">
+  <head>
+    <title>surjikal | css custom filter sandbox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0"/>
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta charset="utf-8"/>
+    <meta name="author" content="Nicolas Porter"/>
+    <meta name="description" content="A CSS custom filter sandbox."/>
+    <link href="assets/css/default.css" rel="stylesheet"/>
+    <script src="assets/js/libs/angular.js"></script>
+    <script src="assets/js/libs/lodash.js"></script>
+    <script src="assets/js/libs/zepto.js"></script>
+    <script src="assets/js/libs/dat.gui.js"></script>
+    <script src="assets/js/app/app.js"></script>
+    <script src="assets/js/app/controllers/main-controller.js"></script>
+    <script src="assets/js/app/directives/shader-directive.js"></script>
+    <script>
+      // FIXME
+      $(function() {
+        //- var img = new Image();
+        //- img.src = 'http://lorempixel.com/output/city-q-c-640-480-4.jpg';
+        //- var shaderContainer = document.getElementById('shader-container');
+        //- var shader          = shaderContainer.getElementsByClassName('shader')[0];
+        //- shader.appendChild(img);
+        
+        // I have to something like this otherwise the image doesn't load properly
+        setTimeout(function() {
+          $('.loading').removeClass('loading');
+        }, 1000);
+      })
+      
+      
+    </script>
+  </head>
+  <body ng-controller="MainController" class="loading">
+    <section id="shader-container">
+      <shader shader-fragment="fragmentShader" shader-params="uniformControls">
+        <h1>Custom CSS Filter!</h1><img src="http://lorempixel.com/output/city-q-c-640-480-4.jpg"/>
+      </shader>
+    </section><br/><br/>
+    <div class="shader-controls"><br/><br/>
+      <div ng-repeat="uniform in uniforms" class="uniform">uniform[{{ uniform.type }}]: {{ uniform.name }}
+        <div ng-switch="uniform.type" class="uniform-type">
+          <div ng-switch-when="vec3" class="uniform-vec3">
+                  <label>[0]:
+                    <input type="range" ng-model="uniform.value[0]" min="0.0" max="1.0" step="0.01"/>{{ uniform.value[0] }}
+                  </label><br/>
+                  <label>[1]:
+                    <input type="range" ng-model="uniform.value[1]" min="0.0" max="1.0" step="0.01"/>{{ uniform.value[1] }}
+                  </label><br/>
+                  <label>[2]:
+                    <input type="range" ng-model="uniform.value[2]" min="0.0" max="1.0" step="0.01"/>{{ uniform.value[2] }}
+                  </label>
+          </div>
+          <div ng-switch-when="float" class="uniform-vec3">
+            <label>
+              <input type="range" ng-model="uniform.value" min="0.0" max="1.0" step="0.01"/>{{ uniform.value }}
+            </label>
+          </div>
+        </div><br/>
+      </div>
+      <h3>Fragment Shader</h3>
+      <textarea ng-model="fragmentShader" class="fragment-shader"></textarea>
+    </div>
+  </body>
+</html>

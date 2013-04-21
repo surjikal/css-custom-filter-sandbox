@@ -1,7 +1,0 @@
-
-// Mixins for Rem Font Sizing
-// http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
-@mixin font-size($size: 16){
-  font-size: $size + px; // fallback
-  font-size: ($size / 10) + rem;
-}
