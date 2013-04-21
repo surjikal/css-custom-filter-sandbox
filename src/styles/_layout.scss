@@ -1,0 +1,24 @@
+
+html, body {
+    min-height: 100%;
+    width: 100%;
+}
+
+html {
+    margin: 0 auto;
+}
+
+body {
+    max-width: 700px;
+
+    padding: 20px;
+    margin: 0 auto;
+
+    & > header {
+        width: 100%;
+    }
+
+    section {
+        margin: 20px 0;
+    }
+}
