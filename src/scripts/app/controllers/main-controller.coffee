@@ -240,8 +240,8 @@ app.service 'ShaderResource', ->
 
         // Built-in uniforms
 
-        uniform vec2 u_meshSize;
-        uniform mat4 u_projectionMatrix;
+        uniform vec2 u_meshSize;//!
+        uniform mat4 u_projectionMatrix;//!
 
         // Uniforms passed in from CSS
 
