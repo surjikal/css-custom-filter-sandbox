@@ -1,96 +1,14 @@
 
-@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
-
-
-$background-color: hsl(200, 23%, 98%);
-
-@function fake-rgba($color, $alpha) {
-    @return _fake-rgba($background-color, $color, $alpha);
-}
-
-$font-color-highlight: hsl(205,100%,40%);
-$font-color-normal:    #565a5c;
-$font-color-dark:      fake-rgba($font-color-normal, 0.5);
-$font-color-darker:    fake-rgba($font-color-dark,   0.3);
-
-$anchor-color-normal: darken($font-color-highlight, 20%);
-$anchor-color-hover:  $font-color-highlight;
-
-$anchor-border-normal: 1px dotted fake-rgba($anchor-color-normal, 0.2);
-$anchor-border-hover:  1px dotted fake-rgba($anchor-color-hover,  0.4);
+@import url(//fonts.googleapis.com/css?family=Lato:300,400,500,600,700);
 
 
 html {
-    font-size: 10px;
+    font-size: 16px;
 }
 
-body {
-    @include font-size(13);
-    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+body, button {
+    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 400;
-
-    background: $background-color;
-    color: $font-color-normal;
-}
-
-a, a:after {
-    border-bottom: $anchor-border-normal;
-    color: $anchor-color-normal;
-
-    &:hover {
-        border-bottom: $anchor-border-hover;
-        color: $anchor-color-hover;
-    }
-}
-
-header  ul > li,
-section ul > li {
-    // Fixes bad indentation on content wrap
-    padding-left: 10px;
-    text-indent: -13px; // Why 13px? Not sure, but it works!
-    @include transition(color 0.5s);
-
-    &:before {
-        @include transition(color 0.5s);
-        content: '❯';
-        color: $font-color-dark;
-        @include font-size(9);
-        padding-right: 6px;
-        padding-left: 2px;
-        position: relative;
-        top: -1px;
-    }
-}
-
-ul.list-unstyled > li {
-    padding-left: 0;
-    text-indent: 0;
-
-   &:before {
-        content: '';
-        position: static;
-    }
-}
-
-h1 {
-    @include font-size(18);
-    font-weight: 400;
-}
-
-h2 {
-    @include font-size(15);
-    font-weight: 300;
-}
-
-textarea {
-    border: 1px solid $anchor-color-normal;
-    width: 100%;
-    height: 300px;
-    font-family: 'Menlo', monospace;
-}
-
-img {
-    width: 300px;
 }
 
 .shader {
@@ -98,11 +16,107 @@ img {
 
     img {
         border: 1px solid orange;
-
+        width: 100%;
     }
 }
 
-
 .loading img {
     @include transform(translateZ(0));
+}
+
+
+body > header {
+    background: #555;
+    border-bottom: 2px solid #444;
+}
+
+.shader-editor-panel {
+    border-bottom: 4px solid #ddd;
+}
+
+.uniform-controls {
+    background: #444;
+
+    font-size: 0.7rem;
+    color: #ddd;
+    @include transform(translateZ(0));
+    overflow-y: scroll;
+
+    .uniform-control {
+        padding: 0.9rem 0.8rem;
+        border-bottom: 1px solid #3d3d3d;
+    }
+
+    header {
+        position: relative;
+    }
+
+    label ~ header {
+        margin-top: 12px;
+    }
+
+    .uniform-type {
+        opacity: 0.5;
+        position: absolute;
+        right: 0;
+        top: 2px;
+    }
+
+    .uniform-name {
+        font-size: 1.2em;
+    }
+
+    label {
+        width: 100%;
+        position: relative;
+        display: block;
+        height: 20px;
+    }
+
+    .uniform-value {
+        position: absolute;
+        right: 0;
+        width: 30px;
+        bottom: 0;
+        top: 8px;
+        text-align: right;
+    }
+
+    .uniform-value-index {
+        position: absolute;
+        left: 0;
+        width: 10px;
+        top: 8px;
+    }
+
+    .error-unhandled-uniform-type {
+        font-style: italic;
+        opacity: 0.4;
+    }
+
+    input[type=range] {
+        position: absolute;
+        left: 15px;
+        right: 30px;
+        display: block;
+    }
+}
+
+button {
+    color: #ddd;
+    background: #555;
+    font-size: 0.8rem;
+    padding: 1em 0;
+    border: 0;
+    margin: 0;
+
+    & + button {
+        border-left: 1px solid #444;
+    }
+
+    &.selected, &:hover, &:focus {
+        background: #f0f0f0;
+        cursor: pointer;
+        color: #333;
+    }
 }

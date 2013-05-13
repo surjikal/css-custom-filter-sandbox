@@ -21,7 +21,9 @@ html(lang='en', ng-app='CSSCustomFilterSandbox')
       mixin css("default")
 
     block js-libs
+      mixin js("http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js")
       mixin js-lib("angular")
+      mixin js-lib("angular.ace")
       mixin js-lib("lodash")
       mixin js-lib("zepto")
       mixin js-lib("dat.gui")
@@ -49,40 +51,52 @@ html(lang='en', ng-app='CSSCustomFilterSandbox')
 
   body.loading(ng-controller="MainController")
 
-    section#shader-container
-      shader(shader-fragment="fragmentShader", shader-params="uniformControls")
+    header
+      button#edit-vertex-shader-button(type="button", ng-click="showVertexEditor()", ng-class="{selected:vertexSelected}")
+        | Vertex
+      button#edit-fragment-shader-button(type="button", ng-click="showFragmentEditor()", ng-class="{selected:fragmentSelected}")
+        | Fragment
+
+    section.shader-editor-panel
+      .shader-editor(ng-model="shaderModel", ace="glsl", scope-instance="editor")
+
+
+    section.shader-output
+      shader(shader-vertex="vertexShader", shader-fragment="fragmentShader", shader-params="uniformControls", shader-vertex-mesh="16 32")
         h1 Custom CSS Filter!
-        img(src="http://lorempixel.com/output/city-q-c-640-480-4.jpg")
-
-    br
-    br
-
-    .shader-controls
+        img(src="http://lorempixel.com/640/400")
 
 
-      br
-      br
+    section.uniform-controls
 
-      mixin uniform-vec3(index)
-        label
-          | [#{index}]:
-          input(type="range", ng-model="uniform.value[#{index}]", min="0.0", max="1.0", step="0.01")
-          | {{ uniform.value[#{index}] }}
+      mixin vector-uniform-control()
+        ul: li(ng-repeat="index in valueRange")
+          label
+            .uniform-value-index {{ index }}
+            input(type="range", ng-model="uniform.value[index]", min="0.0", max="1.0", step="0.01")
+            .uniform-value {{ uniform.value[index] | number:2 }}
 
-      .uniform(ng-repeat="uniform in uniforms")
-        | uniform[{{ uniform.type }}]: {{ uniform.name }}
-        .uniform-type(ng-switch="uniform.type")
-          .uniform-vec3(ng-switch-when="vec3")
-            mixin uniform-vec3(0)
-            br
-            mixin uniform-vec3(1)
-            br
-            mixin uniform-vec3(2)
-          .uniform-vec3(ng-switch-when="float")
-            label
-              input(type="range", ng-model="uniform.value", min="0.0", max="1.0", step="0.01")
-              | {{ uniform.value }}
-        br
 
-      h3 Fragment Shader
-      textarea.fragment-shader(ng-model="fragmentShader")
+      .uniform-control(ng-repeat="uniform in uniforms", ng-switch="uniform.type")
+          header
+            .uniform-type {{ uniform.type }}
+            .uniform-name {{ uniform.name }}
+
+          .vector-uniform-control(uniform="uniform", ng-switch-when="vec2")
+            mixin vector-uniform-control()
+
+          .vector-uniform-control(uniform="uniform", ng-switch-when="vec3")
+            mixin vector-uniform-control()
+
+          .vector-uniform-control(uniform="uniform", ng-switch-when="vec4")
+            mixin vector-uniform-control()
+
+          .matrix-uniform-control(ng-switch-when="mat4")
+
+          .float-uniform-control(uniform="uniform", ng-switch-when="float")
+              label
+                input(type="range", ng-model="uniform.value", min="0.0", max="1.0", step="0.01")
+                .uniform-value {{ uniform.value | number:2 }}
+
+          .error-unhandled-uniform-type(ng-switch-default)
+            | unhandled uniform type <span class="unhandled-uniform-type">{{ uniform.type }}</span> :(

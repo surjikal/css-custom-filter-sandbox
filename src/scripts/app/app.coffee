@@ -1,2 +1,2 @@
 
-@app = angular.module 'CSSCustomFilterSandbox', []
+@app = angular.module 'CSSCustomFilterSandbox', ['ace']
