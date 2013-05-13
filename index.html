@@ -12,7 +12,9 @@
     <meta name="author" content="Nicolas Porter"/>
     <meta name="description" content="A CSS custom filter sandbox."/>
     <link href="assets/css/default.css" rel="stylesheet"/>
+    <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js"></script>
     <script src="assets/js/libs/angular.js"></script>
+    <script src="assets/js/libs/angular.ace.js"></script>
     <script src="assets/js/libs/lodash.js"></script>
     <script src="assets/js/libs/zepto.js"></script>
     <script src="assets/js/libs/dat.gui.js"></script>
@@ -38,34 +40,66 @@
     </script>
   </head>
   <body ng-controller="MainController" class="loading">
-    <section id="shader-container">
-      <shader shader-fragment="fragmentShader" shader-params="uniformControls">
-        <h1>Custom CSS Filter!</h1><img src="http://lorempixel.com/output/city-q-c-640-480-4.jpg"/>
+    <header>
+      <button id="edit-vertex-shader-button" type="button" ng-click="showVertexEditor()" ng-class="{selected:vertexSelected}">Vertex</button>
+      <button id="edit-fragment-shader-button" type="button" ng-click="showFragmentEditor()" ng-class="{selected:fragmentSelected}">Fragment</button>
+    </header>
+    <section class="shader-editor-panel">
+      <div ng-model="shaderModel" ace="glsl" scope-instance="editor" class="shader-editor"></div>
+    </section>
+    <section class="shader-output">
+      <shader shader-vertex="vertexShader" shader-fragment="fragmentShader" shader-params="uniformControls" shader-vertex-mesh="16 32">
+        <h1>Custom CSS Filter!</h1><img src="http://lorempixel.com/640/400"/>
       </shader>
-    </section><br/><br/>
-    <div class="shader-controls"><br/><br/>
-      <div ng-repeat="uniform in uniforms" class="uniform">uniform[{{ uniform.type }}]: {{ uniform.name }}
-        <div ng-switch="uniform.type" class="uniform-type">
-          <div ng-switch-when="vec3" class="uniform-vec3">
-                  <label>[0]:
-                    <input type="range" ng-model="uniform.value[0]" min="0.0" max="1.0" step="0.01"/>{{ uniform.value[0] }}
-                  </label><br/>
-                  <label>[1]:
-                    <input type="range" ng-model="uniform.value[1]" min="0.0" max="1.0" step="0.01"/>{{ uniform.value[1] }}
-                  </label><br/>
-                  <label>[2]:
-                    <input type="range" ng-model="uniform.value[2]" min="0.0" max="1.0" step="0.01"/>{{ uniform.value[2] }}
-                  </label>
-          </div>
-          <div ng-switch-when="float" class="uniform-vec3">
-            <label>
-              <input type="range" ng-model="uniform.value" min="0.0" max="1.0" step="0.01"/>{{ uniform.value }}
-            </label>
-          </div>
-        </div><br/>
+    </section>
+    <section class="uniform-controls">
+      <div ng-repeat="uniform in uniforms" ng-switch="uniform.type" class="uniform-control">
+        <header>
+          <div class="uniform-type">{{ uniform.type }}</div>
+          <div class="uniform-name">{{ uniform.name }}</div>
+        </header>
+        <div uniform="uniform" ng-switch-when="vec2" class="vector-uniform-control">
+                <ul>
+                  <li ng-repeat="index in valueRange">
+                    <label>
+                      <div class="uniform-value-index">{{ index }}</div>
+                      <input type="range" ng-model="uniform.value[index]" min="0.0" max="1.0" step="0.01"/>
+                      <div class="uniform-value">{{ uniform.value[index] | number:2 }}</div>
+                    </label>
+                  </li>
+                </ul>
+        </div>
+        <div uniform="uniform" ng-switch-when="vec3" class="vector-uniform-control">
+                <ul>
+                  <li ng-repeat="index in valueRange">
+                    <label>
+                      <div class="uniform-value-index">{{ index }}</div>
+                      <input type="range" ng-model="uniform.value[index]" min="0.0" max="1.0" step="0.01"/>
+                      <div class="uniform-value">{{ uniform.value[index] | number:2 }}</div>
+                    </label>
+                  </li>
+                </ul>
+        </div>
+        <div uniform="uniform" ng-switch-when="vec4" class="vector-uniform-control">
+                <ul>
+                  <li ng-repeat="index in valueRange">
+                    <label>
+                      <div class="uniform-value-index">{{ index }}</div>
+                      <input type="range" ng-model="uniform.value[index]" min="0.0" max="1.0" step="0.01"/>
+                      <div class="uniform-value">{{ uniform.value[index] | number:2 }}</div>
+                    </label>
+                  </li>
+                </ul>
+        </div>
+        <div ng-switch-when="mat4" class="matrix-uniform-control"></div>
+        <div uniform="uniform" ng-switch-when="float" class="float-uniform-control">
+          <label>
+            <input type="range" ng-model="uniform.value" min="0.0" max="1.0" step="0.01"/>
+            <div class="uniform-value">{{ uniform.value | number:2 }}</div>
+          </label>
+        </div>
+        <div ng-switch-default="ng-switch-default" class="error-unhandled-uniform-type">unhandled uniform type <span class="unhandled-uniform-type">{{ uniform.type }}</span> :(</div>
       </div>
-      <h3>Fragment Shader</h3>
-      <textarea ng-model="fragmentShader" class="fragment-shader"></textarea>
-    </div>
+    </section>
   </body>
 </html>

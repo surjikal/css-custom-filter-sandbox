@@ -1,4 +1,4 @@
-@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
+@import url(//fonts.googleapis.com/css?family=Lato:300,400,500,600,700);
 /* line 17, ../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -88,8 +88,13 @@ li {
   list-style: none;
 }
 
+/* line 34, ../../../src/styles/lib/_reset.scss */
+button {
+  margin: 0;
+}
+
 @media print {
-  /* line 36, ../../../src/styles/lib/_reset.scss */
+  /* line 40, ../../../src/styles/lib/_reset.scss */
   * {
     color: black !important;
     background: transparent !important;
@@ -109,133 +114,205 @@ li {
 html, body {
   min-height: 100%;
   width: 100%;
-}
-
-/* line 7, ../../../src/styles/_layout.scss */
-html {
   margin: 0 auto;
 }
 
-/* line 11, ../../../src/styles/_layout.scss */
-body {
-  max-width: 700px;
-  padding: 20px;
-  margin: 0 auto;
+/* line 8, ../../../src/styles/_layout.scss */
+.uniform-controls {
+  position: absolute;
+  top: 40px;
+  left: 70%;
+  bottom: 0;
+  right: 0;
+  overflow: scroll;
 }
+
 /* line 17, ../../../src/styles/_layout.scss */
+.shader-output {
+  position: absolute;
+  left: 0;
+  right: 30%;
+  top: 50%;
+  bottom: 0;
+  padding: 1em;
+  overflow: scroll;
+}
+/* line 26, ../../../src/styles/_layout.scss */
+.shader-output h1 {
+  margin-bottom: 10px;
+}
+
+/* line 31, ../../../src/styles/_layout.scss */
 body > header {
-  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 38px;
 }
-/* line 21, ../../../src/styles/_layout.scss */
-body section {
-  margin: 20px 0;
+/* line 38, ../../../src/styles/_layout.scss */
+body > header button {
+  height: 100%;
+  width: 100px;
+  line-height: 1.2;
+  display: block;
+  float: left;
+  border: 0;
+  margin: 0;
 }
 
-/* line 23, ../../../src/styles/_theme.scss */
+/* line 49, ../../../src/styles/_layout.scss */
+.shader-editor-panel {
+  position: absolute;
+  left: 0;
+  right: 30%;
+  bottom: 50%;
+  top: 40px;
+}
+/* line 56, ../../../src/styles/_layout.scss */
+.shader-editor-panel .shader-editor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: auto;
+}
+/* line 64, ../../../src/styles/_layout.scss */
+.shader-editor-panel .shader-editor .ace-editor {
+  height: 100%;
+  width: 100%;
+}
+
+/* line 5, ../../../src/styles/_theme.scss */
 html {
-  font-size: 10px;
+  font-size: 16px;
 }
 
-/* line 27, ../../../src/styles/_theme.scss */
-body {
-  font-size: 13px;
-  font-size: 1.3rem;
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  background: #f9fafb;
-  color: #565a5c;
-}
-
-/* line 36, ../../../src/styles/_theme.scss */
-a, a:after {
-  border-bottom: 1px dotted #c7d4dd;
-  color: #003c66;
-}
-/* line 40, ../../../src/styles/_theme.scss */
-a:hover, a:after:hover {
-  border-bottom: 1px dotted #95c5e8;
-  color: #0077cc;
-}
-
-/* line 47, ../../../src/styles/_theme.scss */
-header ul > li,
-section ul > li {
-  padding-left: 10px;
-  text-indent: -13px;
-  -webkit-transition: color 0.5s;
-  -moz-transition: color 0.5s;
-  -o-transition: color 0.5s;
-  transition: color 0.5s;
-}
-/* line 53, ../../../src/styles/_theme.scss */
-header ul > li:before,
-section ul > li:before {
-  -webkit-transition: color 0.5s;
-  -moz-transition: color 0.5s;
-  -o-transition: color 0.5s;
-  transition: color 0.5s;
-  content: '❯';
-  color: #a7aaab;
-  font-size: 9px;
-  font-size: 0.9rem;
-  padding-right: 6px;
-  padding-left: 2px;
-  position: relative;
-  top: -1px;
-}
-
-/* line 65, ../../../src/styles/_theme.scss */
-ul.list-unstyled > li {
-  padding-left: 0;
-  text-indent: 0;
-}
-/* line 69, ../../../src/styles/_theme.scss */
-ul.list-unstyled > li:before {
-  content: '';
-  position: static;
-}
-
-/* line 75, ../../../src/styles/_theme.scss */
-h1 {
-  font-size: 18px;
-  font-size: 1.8rem;
+/* line 9, ../../../src/styles/_theme.scss */
+body, button {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
 }
 
-/* line 80, ../../../src/styles/_theme.scss */
-h2 {
-  font-size: 15px;
-  font-size: 1.5rem;
-  font-weight: 300;
-}
-
-/* line 85, ../../../src/styles/_theme.scss */
-textarea {
-  border: 1px solid #003c66;
-  width: 100%;
-  height: 300px;
-  font-family: 'Menlo', monospace;
-}
-
-/* line 92, ../../../src/styles/_theme.scss */
-img {
-  width: 300px;
-}
-
-/* line 96, ../../../src/styles/_theme.scss */
+/* line 14, ../../../src/styles/_theme.scss */
 .shader {
   overflow: hidden;
 }
-/* line 99, ../../../src/styles/_theme.scss */
+/* line 17, ../../../src/styles/_theme.scss */
 .shader img {
   border: 1px solid orange;
+  width: 100%;
 }
 
-/* line 106, ../../../src/styles/_theme.scss */
+/* line 23, ../../../src/styles/_theme.scss */
 .loading img {
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
   -ms-transform: translateZ(0);
   -o-transform: translateZ(0);
   transform: translateZ(0);
+}
+
+/* line 28, ../../../src/styles/_theme.scss */
+body > header {
+  background: #555;
+  border-bottom: 2px solid #444;
+}
+
+/* line 33, ../../../src/styles/_theme.scss */
+.shader-editor-panel {
+  border-bottom: 4px solid #ddd;
+}
+
+/* line 37, ../../../src/styles/_theme.scss */
+.uniform-controls {
+  background: #444;
+  font-size: 0.7rem;
+  color: #ddd;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  overflow-y: scroll;
+}
+/* line 45, ../../../src/styles/_theme.scss */
+.uniform-controls .uniform-control {
+  padding: 0.9rem 0.8rem;
+  border-bottom: 1px solid #3d3d3d;
+}
+/* line 50, ../../../src/styles/_theme.scss */
+.uniform-controls header {
+  position: relative;
+}
+/* line 54, ../../../src/styles/_theme.scss */
+.uniform-controls label ~ header {
+  margin-top: 12px;
+}
+/* line 58, ../../../src/styles/_theme.scss */
+.uniform-controls .uniform-type {
+  opacity: 0.5;
+  position: absolute;
+  right: 0;
+  top: 2px;
+}
+/* line 65, ../../../src/styles/_theme.scss */
+.uniform-controls .uniform-name {
+  font-size: 1.2em;
+}
+/* line 69, ../../../src/styles/_theme.scss */
+.uniform-controls label {
+  width: 100%;
+  position: relative;
+  display: block;
+  height: 20px;
+}
+/* line 76, ../../../src/styles/_theme.scss */
+.uniform-controls .uniform-value {
+  position: absolute;
+  right: 0;
+  width: 30px;
+  bottom: 0;
+  top: 8px;
+  text-align: right;
+}
+/* line 85, ../../../src/styles/_theme.scss */
+.uniform-controls .uniform-value-index {
+  position: absolute;
+  left: 0;
+  width: 10px;
+  top: 8px;
+}
+/* line 92, ../../../src/styles/_theme.scss */
+.uniform-controls .error-unhandled-uniform-type {
+  font-style: italic;
+  opacity: 0.4;
+}
+/* line 97, ../../../src/styles/_theme.scss */
+.uniform-controls input[type=range] {
+  position: absolute;
+  left: 15px;
+  right: 30px;
+  display: block;
+}
+
+/* line 105, ../../../src/styles/_theme.scss */
+button {
+  color: #ddd;
+  background: #555;
+  font-size: 0.8rem;
+  padding: 1em 0;
+  border: 0;
+  margin: 0;
+}
+/* line 113, ../../../src/styles/_theme.scss */
+button + button {
+  border-left: 1px solid #444;
+}
+/* line 117, ../../../src/styles/_theme.scss */
+button.selected, button:hover, button:focus {
+  background: #f0f0f0;
+  cursor: pointer;
+  color: #333;
 }
