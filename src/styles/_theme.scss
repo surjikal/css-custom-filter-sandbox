@@ -31,6 +31,38 @@ body > header {
     border-bottom: 2px solid #444;
 }
 
+
+#message-panel {
+    background-color: rgba(black, 0.5);
+    color: #eee;
+    text-align: center;
+    z-index: 99;
+
+    .message {
+        @include border-radius(5px);
+        @include box-shadow(0px 5px 50px rgba(black, 0.2));
+        background: #999;
+        line-height: 1.5;
+
+        h1 {
+            font-size: 20px;
+            margin-bottom: 0.8em;
+        }
+
+        p {
+            font-size: 15px;
+            margin: 0 auto;
+            max-width: 95%;
+        }
+
+        em {
+            font-weight: 600;
+            color: #fff;
+        }
+    }
+}
+
+
 #shader-editor-panel {
     border-bottom: 4px solid #ddd;
 }

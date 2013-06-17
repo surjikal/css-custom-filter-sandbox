@@ -56,6 +56,15 @@ html(lang='en', ng-app='CSSCustomFilterSandbox')
       button#edit-fragment-shader-button(type="button", ng-click="showFragmentEditor()", ng-class="{selected:fragmentSelected}")
         | Fragment
 
+
+    #message-panel(ng-show="!customFiltersSupported")
+      .message
+        h1 Your browser does not support custom css filters!
+        p
+          | Custom Filters are available in both <em>Chrome</em> and <em>Canary</em>.
+        p
+          | To enable them, head over to <em>about:flags</em> and search for <em>CSS Shaders</em>.
+
     #shader-editor-panel
       #shader-editor(ng-model="shaderModel", ace="glsl", scope-instance="editor")
 

@@ -27,6 +27,23 @@ body > header {
 }
 
 
+#message-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding-top: 200px;
+
+    .message {
+        padding: 1em 1.5em 2em 1.5em;
+        width: 100%;
+        max-width: 650px;
+        margin: 0 auto;
+    }
+}
+
+
 #uniform-controls {
     position: absolute;
     top: 50%;

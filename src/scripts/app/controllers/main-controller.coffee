@@ -1,4 +1,16 @@
 
+app.service 'CheckFeatureWidthPropertyPrefix', ->
+    prefixes = ["", "-webkit-", "-moz-", "-ms-", "-o-"]
+
+    check: (property, value) ->
+        $div = $("<div />")
+        for prefix in prefixes
+            prefixedProperty = prefix + property
+            if (`$div.css(prefixedProperty, value).css(prefixedProperty) == value`)
+                return true
+        return false
+
+
 app.service 'ShaderResource', ->
 
     saveToLocalStorage = (shaders) ->
@@ -140,7 +152,8 @@ app.directive 'vectorUniformControl', ->
             $scope.valueRange = _.range $scope.uniform.value.length
 
 
-app.controller 'MainController', ($scope, $timeout, ShaderResource, ShaderUniformParser) ->
+app.controller 'MainController', ($scope, $timeout, ShaderResource, ShaderUniformParser, CheckFeatureWidthPropertyPrefix) ->
+    $scope.customFiltersSupported = CheckFeatureWidthPropertyPrefix.check "filter", "custom(none mix(url(http://www.example.com/)))"
 
     $scope.fragmentShader = ShaderResource.load 'defaultFragment'
     $scope.vertexShader   = ShaderResource.load 'defaultVertex'
