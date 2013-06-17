@@ -113,36 +113,14 @@ button {
 /* line 2, ../../../src/styles/_layout.scss */
 html, body {
   min-height: 100%;
+  height: 100%;
   width: 100%;
   margin: 0 auto;
+  max-width: 800px;
+  position: relative;
 }
 
-/* line 8, ../../../src/styles/_layout.scss */
-.uniform-controls {
-  position: absolute;
-  top: 40px;
-  left: 70%;
-  bottom: 0;
-  right: 0;
-  overflow: scroll;
-}
-
-/* line 17, ../../../src/styles/_layout.scss */
-.shader-output {
-  position: absolute;
-  left: 0;
-  right: 30%;
-  top: 50%;
-  bottom: 0;
-  padding: 1em;
-  overflow: scroll;
-}
-/* line 26, ../../../src/styles/_layout.scss */
-.shader-output h1 {
-  margin-bottom: 10px;
-}
-
-/* line 31, ../../../src/styles/_layout.scss */
+/* line 11, ../../../src/styles/_layout.scss */
 body > header {
   position: absolute;
   left: 0;
@@ -150,7 +128,7 @@ body > header {
   top: 0;
   height: 38px;
 }
-/* line 38, ../../../src/styles/_layout.scss */
+/* line 18, ../../../src/styles/_layout.scss */
 body > header button {
   height: 100%;
   width: 100px;
@@ -161,25 +139,67 @@ body > header button {
   margin: 0;
 }
 
-/* line 49, ../../../src/styles/_layout.scss */
-.shader-editor-panel {
+/* line 30, ../../../src/styles/_layout.scss */
+#message-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding-top: 200px;
+}
+/* line 38, ../../../src/styles/_layout.scss */
+#message-panel .message {
+  padding: 1em 1.5em 2em 1.5em;
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* line 47, ../../../src/styles/_layout.scss */
+#uniform-controls {
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  bottom: 0;
+  right: 0;
+  overflow: scroll;
+}
+
+/* line 57, ../../../src/styles/_layout.scss */
+#shader-output {
   position: absolute;
   left: 0;
   right: 30%;
+  top: 50%;
+  bottom: 0;
+  padding: 1em;
+  overflow: scroll;
+}
+/* line 66, ../../../src/styles/_layout.scss */
+#shader-output h1 {
+  margin-bottom: 10px;
+}
+
+/* line 72, ../../../src/styles/_layout.scss */
+#shader-editor-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
   bottom: 50%;
   top: 40px;
 }
-/* line 56, ../../../src/styles/_layout.scss */
-.shader-editor-panel .shader-editor {
+
+/* line 81, ../../../src/styles/_layout.scss */
+#shader-editor {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  height: auto;
 }
-/* line 64, ../../../src/styles/_layout.scss */
-.shader-editor-panel .shader-editor .ace-editor {
+/* line 88, ../../../src/styles/_layout.scss */
+#shader-editor .ace-editor {
   height: 100%;
   width: 100%;
 }
@@ -193,19 +213,20 @@ html {
 body, button {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
+  background: #333;
 }
 
-/* line 14, ../../../src/styles/_theme.scss */
+/* line 15, ../../../src/styles/_theme.scss */
 .shader {
   overflow: hidden;
 }
-/* line 17, ../../../src/styles/_theme.scss */
+/* line 18, ../../../src/styles/_theme.scss */
 .shader img {
   border: 1px solid orange;
   width: 100%;
 }
 
-/* line 23, ../../../src/styles/_theme.scss */
+/* line 24, ../../../src/styles/_theme.scss */
 .loading img {
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
@@ -214,62 +235,119 @@ body, button {
   transform: translateZ(0);
 }
 
-/* line 28, ../../../src/styles/_theme.scss */
+/* line 29, ../../../src/styles/_theme.scss */
 body > header {
   background: #555;
   border-bottom: 2px solid #444;
 }
 
-/* line 33, ../../../src/styles/_theme.scss */
-.shader-editor-panel {
+/* line 35, ../../../src/styles/_theme.scss */
+#message-panel {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #eee;
+  text-align: center;
+  z-index: 99;
+}
+/* line 41, ../../../src/styles/_theme.scss */
+#message-panel .message {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.2);
+  background: #999;
+  line-height: 1.5;
+}
+/* line 47, ../../../src/styles/_theme.scss */
+#message-panel .message h1 {
+  font-size: 20px;
+  margin-bottom: 0.8em;
+}
+/* line 52, ../../../src/styles/_theme.scss */
+#message-panel .message p {
+  font-size: 15px;
+  margin: 0 auto;
+  max-width: 95%;
+}
+/* line 58, ../../../src/styles/_theme.scss */
+#message-panel .message em {
+  font-weight: 600;
+  color: #fff;
+}
+
+/* line 66, ../../../src/styles/_theme.scss */
+#shader-editor-panel {
   border-bottom: 4px solid #ddd;
 }
 
-/* line 37, ../../../src/styles/_theme.scss */
-.uniform-controls {
-  background: #444;
-  font-size: 0.7rem;
-  color: #ddd;
+/* line 70, ../../../src/styles/_theme.scss */
+#shader-editor {
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
   -ms-transform: translateZ(0);
   -o-transform: translateZ(0);
   transform: translateZ(0);
+  font-size: 11px;
+}
+
+/* line 75, ../../../src/styles/_theme.scss */
+#shader-output {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  background: #eee;
+}
+
+/* line 80, ../../../src/styles/_theme.scss */
+#uniform-controls {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  background: #444;
+  font-size: 0.7rem;
+  color: #ddd;
   overflow-y: scroll;
 }
-/* line 45, ../../../src/styles/_theme.scss */
-.uniform-controls .uniform-control {
+/* line 88, ../../../src/styles/_theme.scss */
+#uniform-controls .uniform-control {
   padding: 0.9rem 0.8rem;
   border-bottom: 1px solid #3d3d3d;
 }
-/* line 50, ../../../src/styles/_theme.scss */
-.uniform-controls header {
+/* line 93, ../../../src/styles/_theme.scss */
+#uniform-controls header {
   position: relative;
+  padding-bottom: 5px;
 }
-/* line 54, ../../../src/styles/_theme.scss */
-.uniform-controls label ~ header {
-  margin-top: 12px;
-}
-/* line 58, ../../../src/styles/_theme.scss */
-.uniform-controls .uniform-type {
+/* line 98, ../../../src/styles/_theme.scss */
+#uniform-controls .uniform-type {
   opacity: 0.5;
   position: absolute;
   right: 0;
   top: 2px;
 }
-/* line 65, ../../../src/styles/_theme.scss */
-.uniform-controls .uniform-name {
+/* line 105, ../../../src/styles/_theme.scss */
+#uniform-controls .uniform-name {
   font-size: 1.2em;
 }
-/* line 69, ../../../src/styles/_theme.scss */
-.uniform-controls label {
+/* line 109, ../../../src/styles/_theme.scss */
+#uniform-controls label {
   width: 100%;
   position: relative;
   display: block;
   height: 20px;
 }
-/* line 76, ../../../src/styles/_theme.scss */
-.uniform-controls .uniform-value {
+/* line 116, ../../../src/styles/_theme.scss */
+#uniform-controls .uniform-value {
   position: absolute;
   right: 0;
   width: 30px;
@@ -277,27 +355,27 @@ body > header {
   top: 8px;
   text-align: right;
 }
-/* line 85, ../../../src/styles/_theme.scss */
-.uniform-controls .uniform-value-index {
+/* line 125, ../../../src/styles/_theme.scss */
+#uniform-controls .uniform-value-index {
   position: absolute;
   left: 0;
   width: 10px;
   top: 8px;
 }
-/* line 92, ../../../src/styles/_theme.scss */
-.uniform-controls .error-unhandled-uniform-type {
+/* line 132, ../../../src/styles/_theme.scss */
+#uniform-controls .error-unhandled-uniform-type {
   font-style: italic;
   opacity: 0.4;
 }
-/* line 97, ../../../src/styles/_theme.scss */
-.uniform-controls input[type=range] {
+/* line 137, ../../../src/styles/_theme.scss */
+#uniform-controls input[type=range] {
   position: absolute;
   left: 15px;
   right: 30px;
   display: block;
 }
 
-/* line 105, ../../../src/styles/_theme.scss */
+/* line 145, ../../../src/styles/_theme.scss */
 button {
   color: #ddd;
   background: #555;
@@ -306,11 +384,11 @@ button {
   border: 0;
   margin: 0;
 }
-/* line 113, ../../../src/styles/_theme.scss */
+/* line 153, ../../../src/styles/_theme.scss */
 button + button {
   border-left: 1px solid #444;
 }
-/* line 117, ../../../src/styles/_theme.scss */
+/* line 157, ../../../src/styles/_theme.scss */
 button.selected, button:hover, button:focus {
   background: #f0f0f0;
   cursor: pointer;
