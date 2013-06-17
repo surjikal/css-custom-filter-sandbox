@@ -33,7 +33,9 @@ app.service 'ShaderResource', ->
         defaultFragment: """
         precision mediump float;
 
-        // Uniform values from CSS
+
+        // Feel free to add new uniforms!
+        // The GUI will update itself :D
 
         uniform vec3 colors;
         uniform float alpha;
