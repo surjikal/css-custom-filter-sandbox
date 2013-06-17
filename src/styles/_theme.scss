@@ -9,6 +9,7 @@ html {
 body, button {
     font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 400;
+    background: #333;
 }
 
 .shader {
@@ -30,16 +31,26 @@ body > header {
     border-bottom: 2px solid #444;
 }
 
-.shader-editor-panel {
+#shader-editor-panel {
     border-bottom: 4px solid #ddd;
 }
 
-.uniform-controls {
-    background: #444;
+#shader-editor {
+    @include transform(translateZ(0));
+    font-size: 11px;
+}
 
+#shader-output {
+    @include transform(translateZ(0));
+    background: #eee;
+}
+
+#uniform-controls {
+    @include user-select(none);
+    @include transform(translateZ(0));
+    background: #444;
     font-size: 0.7rem;
     color: #ddd;
-    @include transform(translateZ(0));
     overflow-y: scroll;
 
     .uniform-control {
@@ -49,10 +60,7 @@ body > header {
 
     header {
         position: relative;
-    }
-
-    label ~ header {
-        margin-top: 12px;
+        padding-bottom: 5px;
     }
 
     .uniform-type {

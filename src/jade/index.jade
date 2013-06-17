@@ -26,7 +26,6 @@ html(lang='en', ng-app='CSSCustomFilterSandbox')
       mixin js-lib("angular.ace")
       mixin js-lib("lodash")
       mixin js-lib("zepto")
-      mixin js-lib("dat.gui")
 
     block app
       mixin app-core("app")
@@ -57,17 +56,17 @@ html(lang='en', ng-app='CSSCustomFilterSandbox')
       button#edit-fragment-shader-button(type="button", ng-click="showFragmentEditor()", ng-class="{selected:fragmentSelected}")
         | Fragment
 
-    section.shader-editor-panel
-      .shader-editor(ng-model="shaderModel", ace="glsl", scope-instance="editor")
+    #shader-editor-panel
+      #shader-editor(ng-model="shaderModel", ace="glsl", scope-instance="editor")
 
 
-    section.shader-output
+    #shader-output
       shader(shader-vertex="vertexShader", shader-fragment="fragmentShader", shader-params="uniformControls", shader-vertex-mesh="16 32")
         h1 Custom CSS Filter!
         img(src="http://lorempixel.com/640/400")
 
 
-    section.uniform-controls
+    #uniform-controls
 
       mixin vector-uniform-control()
         ul: li(ng-repeat="index in valueRange")
