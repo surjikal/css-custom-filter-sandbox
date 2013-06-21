@@ -17,7 +17,7 @@ angular.module('ace', []).directive('ace', function($timeout) {
 
     link: function($scope, element, attrs, ngModel) {
       var editor = $scope.scopeInstance = loadAceEditor(element, attrs.ace);
-      editor.setFontSize(10);
+      editor.setFontSize(14);
       editor.setShowPrintMargin(false);
       editor.getSession().on('change', function() {
         $scope.ngModel = editor.getValue();
